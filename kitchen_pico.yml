@@ -1,0 +1,98 @@
+# Pico state codes
+# - On: 1
+# - Up: 8
+# - Fav: 2
+# - Down: 16
+# - Off: 4
+
+# Turn on the lights outside of the kitchen if they're all off
+# - id: kitchen_pico_fav_on
+#   alias: Kitchen Pico fav button pressed
+#   initial_state: True
+#   trigger:
+#     - platform: state
+#       entity_id: sensor.pico
+#       to: '2'
+#   condition:
+#     condition: state
+#     entity_id: group.non_kitchen_lights
+#     state: 'off'
+#   action:
+#     service: homeassistant.turn_on
+#     entity_id: group.non_kitchen_lights
+
+# Turn off the lights outside of the kitchen if any are on
+# - id: kitchen_pico_fav_on
+#   alias: Kitchen Pico fav button pressed
+#   initial_state: True
+#   trigger:
+#     - platform: state
+#       entity_id: sensor.pico
+#       to: '2'
+#   condition:
+#     condition: state
+#     entity_id: group.non_kitchen_lights
+#     state: 'on'
+#   action:
+#     service: homeassistant.turn_off
+#     entity_id: group.non_kitchen_lights
+
+# Turn on the kitchen lights
+- id: kitchen_pico_on
+  alias: Kitchen Pico on
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.pico
+      to: '1'
+  condition:
+    condition: state
+    entity_id: group.kitchen
+    state: 'off'
+  action:
+    service: light.turn_on
+    entity_id: group.kitchen
+
+# Turn off the kitchen lights
+- id: kitchen_pico_off
+  alias: Kitchen Pico off
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.pico
+      to: '4'
+  condition:
+    condition: state
+    entity_id: group.kitchen
+    state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: group.kitchen
+
+# Brighten the kitchen lights
+- id: kitchen_pico_up
+  alias: Kitchen Pico up
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.pico
+      to: '8'
+  action:
+    service: light.turn_on
+    entity_id: group.kitchen
+    data_template:
+      brightness: "{{ [255, state_attr('light.kitchennook', 'brightness')|int(0) + 51]|min }}"
+
+# Dim the kitchen lights
+- id: kitchen_pico_down
+  alias: Kitchen Pico down
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.pico
+      to: '16'
+  action:
+    service: light.turn_on
+    entity_id: group.kitchen
+    data_template:
+      brightness: "{{ [0, state_attr('light.kitchennook', 'brightness')|int(0) - 51]|max }}"

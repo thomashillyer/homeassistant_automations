@@ -24,4 +24,4 @@ google_assistant:
   project_id: inspired-gear-368219
   service_account: !include SERVICE_ACCOUNT.json
   report_state: true
-# comment to trigger - undo
+# comment to trigger - redo

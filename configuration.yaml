@@ -24,4 +24,10 @@ google_assistant:
   project_id: inspired-gear-368219
   service_account: !include SERVICE_ACCOUNT.json
   report_state: true
-# comment to trigger - thos
+
+panel_iframe:
+  portainer:
+    title: "Portainer"
+    url: "https://home.hillzere.com:9443/#!/2/docker/containers"
+    icon: mdi:docker
+    require_admin: true

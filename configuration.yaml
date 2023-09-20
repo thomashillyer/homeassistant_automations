@@ -13,8 +13,8 @@ notify:
   - name: Phones
     platform: group
     services:
-    - service: iphone
-    - service: sammy_ozeres_iphone
+    - service: mobile_app_thomas_iphone
+    - service: mobile_app_sammy_ozeres_iphone
 
 logger:
   default: info

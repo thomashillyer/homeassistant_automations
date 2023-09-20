@@ -9,6 +9,13 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
+notify:
+  - name: Phones
+    platform: group
+    services:
+    - service: iphone
+    - service: sammy_ozeres_iphone
+
 logger:
   default: info
   logs:

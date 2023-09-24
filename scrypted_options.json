@@ -1,0 +1,4 @@
+{
+  'key': '/server/config/letsencrypt/live/hillzere.com/privkey.pem',
+  'cert': '/server/config/letsencrypt/live/hillzere.com/cert.pem'
+}

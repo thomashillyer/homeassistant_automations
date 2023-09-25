@@ -16,6 +16,8 @@ notify:
     - service: mobile_app_thomas_iphone
     - service: mobile_app_sammy_ozeres_iphone
 
+sensor: !include sensors.yaml
+
 logger:
   default: info
   logs:
